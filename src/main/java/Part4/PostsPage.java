@@ -37,6 +37,7 @@ public class PostsPage extends BaseView {
     //@FindBy(xpath = "//a[contains(@class,'post')]/img")
     //private WebElement image;
 
+
     private final static String headerLocator = "//h2[contains(@class,'svelte')]";
    // @FindBy(xpath = "//h2[contains(@class,'svelte')]")
     //private WebElement header;
