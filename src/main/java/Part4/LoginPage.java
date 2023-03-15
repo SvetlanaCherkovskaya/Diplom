@@ -24,7 +24,7 @@ public class LoginPage extends BaseView {
     private WebElement passwordField;
 
     @FindBy(xpath = "//button[@type='submit']")
-    private WebElement loginBtn;
+    private WebElement loginButton;
 
     private final static String lengthValidationLocator = "//*[contains(text(),'401')]";
     @FindBy(xpath = lengthValidationLocator)
@@ -45,14 +45,10 @@ public class LoginPage extends BaseView {
     private WebElement emptyValidationElement;
     //Поле не может быть пустым
 
-
-
     public void login(String login, String password) {
         usernameField.sendKeys(login);
         passwordField.sendKeys(password);
-        loginBtn.click();
-        // return new PostsPage(driver);
-
+        loginButton.click();
     }
 
     public void assertLengthValidation(){
