@@ -16,34 +16,22 @@ public class LoginPage extends BaseView {
     }
 
 
-
     @FindBy(xpath = "//input[@type='text']")
     private WebElement usernameField;
 
     @FindBy(xpath = "//input[@type='password']")
     private WebElement passwordField;
-
-    @FindBy(xpath = "//button[@type='submit']")
+    private final static String loginButtonLocator = "//button[@type='submit']";
+    @FindBy(xpath = loginButtonLocator)
     private WebElement loginButton;
 
-    private final static String lengthValidationLocator = "//*[contains(text(),'401')]";
-    @FindBy(xpath = lengthValidationLocator)
-    private WebElement lengthValidationElement;
-    ////*[contains(text(),'Не менее 3 и не более 20 символов в одном поле')]
 
-    private final static String nonExistentValidationLocator = "//*[contains(text(),'401')]";;
-    @FindBy(xpath = nonExistentValidationLocator)
-    private WebElement nonExistentValidationElement;
-//Проверьте логин и пароль
-    private final static String symbolValidationLocator = "//*[contains(text(),'401')]";;
-    @FindBy(xpath = symbolValidationLocator)
-    private WebElement symbolValidationElement;
-    ////*[contains(text(),'Только латинские символов и цифр, без спецсимволов')]
+    private final static String errorTextLocator = "//div[contains(@class,'error')]/p[1]";
 
-    private final static String emptyValidationLocator = "//*[contains(text(),'401')]";
-    @FindBy(xpath = emptyValidationLocator)
-    private WebElement emptyValidationElement;
-    //Поле не может быть пустым
+    private final static String lengthValidationText = "Может быть не менее 3 и не более 20 символов";
+    private final static String nonExistentValidationText = "Проверьте логин и пароль";
+    private final static String symbolValidationText = "Только латинские символов и цифр, без спецсимволов";
+    private final static String emptyValidationText = "Поле не может быть пустым";
 
     public void login(String login, String password) {
         usernameField.sendKeys(login);
@@ -51,23 +39,25 @@ public class LoginPage extends BaseView {
         loginButton.click();
     }
 
-    public void assertLengthValidation(){
-        webDriverWait.until(ExpectedConditions.visibilityOf(lengthValidationElement));
-        Assertions.assertTrue(driver.findElement(xpath(lengthValidationLocator)).isDisplayed());
+    public void assertLengthValidation() {
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(xpath(loginButtonLocator)));
+        Assertions.assertTrue(driver.findElement(xpath(errorTextLocator)).getText().contains(lengthValidationText));
+
     }
 
-    public void assertSymbolValidation(){
-        webDriverWait.until(ExpectedConditions.visibilityOf(symbolValidationElement));
-        Assertions.assertTrue(driver.findElement(xpath(symbolValidationLocator)).isDisplayed());
+    public void assertSymbolValidation() {
+        //webDriverWait.until(ExpectedConditions.visibilityOf(symbolValidationElement));
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(xpath(loginButtonLocator)));
+        Assertions.assertTrue(driver.findElement(xpath(errorTextLocator)).getText().contains(symbolValidationText));
     }
 
-    public void assertEmptylValidation(){
-        webDriverWait.until(ExpectedConditions.visibilityOf(emptyValidationElement));
-        Assertions.assertTrue(driver.findElement(xpath(emptyValidationLocator)).isDisplayed());
+    public void assertEmptylValidation() {
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(xpath(loginButtonLocator)));
+        Assertions.assertTrue(driver.findElement(xpath(errorTextLocator)).getText().contains(emptyValidationText));
     }
 
-    public void assertNonExistentValidation(){
-        webDriverWait.until(ExpectedConditions.visibilityOf(nonExistentValidationElement));
-        Assertions.assertTrue(driver.findElement(xpath(nonExistentValidationLocator)).isDisplayed());
+    public void assertNonExistentValidation() {
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(xpath(loginButtonLocator)));
+        Assertions.assertTrue(driver.findElement(xpath(errorTextLocator)).getText().contains(nonExistentValidationText));
     }
-    }
+}

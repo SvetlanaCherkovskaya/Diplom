@@ -52,6 +52,10 @@ public class LoginTest {
         loginPage.assertLengthValidation();
     }
 
+    public LoginTest() {
+        super();
+    }
+
     @Test
     void lengthValidationLogin_21() {
         loginPage.login("sssssssssssssssssssss", "dmla");

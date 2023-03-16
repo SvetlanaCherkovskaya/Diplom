@@ -52,6 +52,10 @@ public class GetMyPostsTest {
         assertThat(c, equalTo("true"));
     }
 
+    public GetMyPostsTest() {
+        super();
+    }
+
     @Test
     void getDECSTest() {
         String c;
@@ -72,8 +76,6 @@ public class GetMyPostsTest {
                 .response()
                 .jsonPath()
                 .getString("data.id");
-
-        // String response2 = response1.replaceAll(",", "");
 
         String[] idString = response1.split(", ");
 

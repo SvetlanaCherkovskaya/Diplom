@@ -66,5 +66,7 @@ public class PostLoginTest {
         assertThat(response, containsString("Неправильный логин. Может быть не менее 3 и не более 20 символов"));
     }
 
-
+    public PostLoginTest() {
+        super();
+    }
 }

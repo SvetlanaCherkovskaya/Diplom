@@ -9,7 +9,6 @@ public class GetNotMyPostsTest {
     private final String token = "b2786883460d40ae4ced59d72333a084";
 
     private final String postsURL = "https://test-stand.gb.ru/api/posts";
-    //private static String c;
 
     @Test
     void getAscNotMeTes() {
@@ -32,20 +31,15 @@ public class GetNotMyPostsTest {
                 .jsonPath()
                 .getString("data.id");
 
-        // String response2 = response1.replaceAll(",", "");
-
         String[] idString = response1.split(", ");
 
-        System.out.println(response1);
+        //System.out.println(response1);
 
         int[] idInt = new int[idString.length];
         for (int i = 1; i < idString.length - 1; i++) {
             idInt[i] = Integer.parseInt(idString[i]);
         }
 
-        //for (int i = 0; i < idString.length; i++) {
-        //System.out.println(idInt[i]);
-        // }
 
         int a = idInt[1];
         int b = idInt[2];
@@ -55,6 +49,10 @@ public class GetNotMyPostsTest {
             c = "false";
         }
         assertThat(c, equalTo("true"));
+    }
+
+    public GetNotMyPostsTest() {
+        super();
     }
 
     @Test
@@ -88,10 +86,6 @@ public class GetNotMyPostsTest {
         for (int i = 1; i < idString.length - 1; i++) {
             idInt[i] = Integer.parseInt(idString[i]);
         }
-
-        //for (int i = 0; i < idString.length; i++) {
-        //System.out.println(idInt[i]);
-        // }
 
         int a = idInt[1];
         int b = idInt[2];
