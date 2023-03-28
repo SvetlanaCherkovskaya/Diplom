@@ -11,13 +11,9 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginTest {
     WebDriver driver;
-    WebDriverWait webDriverWait;
-    Actions actions;
     LoginPage loginPage;
 
     private final static String loginURL = "https://test-stand.gb.ru/login";
@@ -33,6 +29,9 @@ public class LoginTest {
     void initDriver() {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--start-maximized");
+        chromeOptions.addArguments("--remote-allow-origins=*");
+        chromeOptions.addArguments("--no-sandbox");
+        chromeOptions.addArguments("--disable-dev-shm-usage");
         driver = new ChromeDriver(chromeOptions);
         WebDriverManager.chromedriver();
         driver.get(loginURL);
@@ -82,6 +81,8 @@ public class LoginTest {
 
     @AfterEach
     public void tearDown() {
-        driver.quit();
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }

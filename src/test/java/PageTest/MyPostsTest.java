@@ -38,7 +38,10 @@ public class MyPostsTest {
     void initDriver() {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--start-maximized");
-    driver = new ChromeDriver(chromeOptions);
+        chromeOptions.addArguments("--remote-allow-origins=*");
+        chromeOptions.addArguments("--no-sandbox");
+        chromeOptions.addArguments("--disable-dev-shm-usage");
+        driver = new ChromeDriver(chromeOptions);
         WebDriverManager.chromedriver();
         driver.get(loginURL);
         ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0);");
@@ -65,10 +68,12 @@ public class MyPostsTest {
     void displayedImage() {
         postsPage.assertDisplayedImage();
     }
+
     @Test
     void displayedHeader() {
         postsPage.assertDisplayedHeader();
     }
+
     @Test
     void displayedDescription() {
         postsPage.assertDisplayedDescription();

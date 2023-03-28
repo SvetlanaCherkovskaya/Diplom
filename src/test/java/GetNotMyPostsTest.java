@@ -11,7 +11,7 @@ public class GetNotMyPostsTest {
     private final String postsURL = "https://test-stand.gb.ru/api/posts";
 
     @Test
-    void getAscNotMeTes() {
+    void getAscNotMeTest() {
         String c;
         final String response1 = given()
                 .header("X-Auth-Token", token)
@@ -56,7 +56,7 @@ public class GetNotMyPostsTest {
     }
 
     @Test
-    void getDescNotMeTes() {
+    void getDescNotMeTest() {
         String c;
         final String response1 = given()
                 .header("X-Auth-Token", token)
@@ -98,7 +98,7 @@ public class GetNotMyPostsTest {
     }
 
     @Test
-    void getAllNotMeTes() {
+    void getAllNotMeTest() {
         String c;
         given()
                 .header("X-Auth-Token", token)
